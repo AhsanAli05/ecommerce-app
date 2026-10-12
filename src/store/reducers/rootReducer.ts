@@ -1,7 +1,8 @@
 import { combineReducers } from '@reduxjs/toolkit'
+import productsReducer from '../slices/productsSlice'
 
 const rootReducer = combineReducers({
-  placeholder: (state = null) => state,
+  products: productsReducer,
 })
 
 export default rootReducer
