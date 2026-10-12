@@ -1,4 +1,4 @@
-import AppNavigation from './naviation'
+import AppNavigation from './navigation'
 
 export default function App() {
   return <AppNavigation />
