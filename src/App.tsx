@@ -1,8 +1,5 @@
+import AppNavigation from './naviation'
 
-function App() {
-  return (
-    <h1>Hello World!</h1>
-  )
+export default function App() {
+  return <AppNavigation />
 }
-
-export default App
