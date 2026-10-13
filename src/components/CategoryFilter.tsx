@@ -26,7 +26,7 @@ export default function CategoryFilter({
 }: CategoryFilterProps) {
   return (
     <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4 border-b border-zinc-200/60 pb-4 sm:pb-6 w-full min-w-0">
-      <div className="flex items-center sm:flex-wrap gap-1.5 sm:gap-2 overflow-x-auto sm:overflow-visible pb-1 sm:pb-0 scrollbar-none w-full min-w-0 max-w-full">
+      <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 flex-1 min-w-0">
         {tabs.map((tab) => {
           const isActive = selectedCategory === tab.id
           return (
@@ -46,8 +46,8 @@ export default function CategoryFilter({
         })}
       </div>
 
-      <div className="flex items-center gap-2 sm:gap-3 self-end lg:self-auto shrink-0">
-        <div className="relative">
+      <div className="flex flex-wrap items-center justify-between sm:justify-end gap-2 sm:gap-3 w-full lg:w-auto shrink-0 min-w-0">
+        <div className="relative min-w-0 shrink">
           <select
             value={sortBy}
             onChange={(e) =>
@@ -55,14 +55,14 @@ export default function CategoryFilter({
                 e.target.value as 'featured' | 'price-asc' | 'price-desc' | 'rating',
               )
             }
-            className="appearance-none bg-[#eceef5] hover:bg-zinc-200 text-zinc-800 text-xs sm:text-sm font-semibold rounded-full pl-9 pr-8 py-2 cursor-pointer focus:outline-none transition-colors"
+            className="appearance-none bg-[#eceef5] hover:bg-zinc-200 text-zinc-800 text-xs sm:text-sm font-semibold rounded-full pl-8 sm:pl-9 pr-7 sm:pr-8 py-2 cursor-pointer focus:outline-none transition-colors max-w-[130px] xs:max-w-none truncate"
           >
             <option value="featured">Featured</option>
             <option value="price-asc">Price: Low to High</option>
             <option value="price-desc">Price: High to Low</option>
             <option value="rating">Highest Rated</option>
           </select>
-          <ArrowUpDown className="w-3.5 h-3.5 text-zinc-600 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <ArrowUpDown className="w-3.5 h-3.5 text-zinc-600 absolute left-3 sm:left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
         </div>
 
         <div className="flex items-center bg-[#eceef5] p-1 rounded-xl">
