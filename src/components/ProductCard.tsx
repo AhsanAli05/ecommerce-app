@@ -40,12 +40,12 @@ export default function ProductCard({ product, onSelect }: ProductCardProps) {
   return (
     <div
       onClick={() => onSelect(product)}
-      className="group relative bg-white rounded-2xl border border-zinc-200/80 p-4 flex flex-col justify-between hover:shadow-lg transition-all duration-200 cursor-pointer"
+      className="group relative bg-white rounded-xl sm:rounded-2xl border border-zinc-200/80 p-3 sm:p-4 flex flex-col justify-between hover:shadow-lg transition-all duration-200 cursor-pointer w-full min-w-0"
     >
       <button
         type="button"
         onClick={handleWishlistClick}
-        className="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/90 hover:bg-white text-zinc-400 hover:text-orange-600 transition-colors shadow-xs"
+        className="absolute top-3 right-3 sm:top-4 sm:right-4 z-10 p-1.5 sm:p-2 rounded-full bg-white/90 hover:bg-white text-zinc-400 hover:text-orange-600 transition-colors shadow-xs"
         aria-label="Toggle Wishlist"
       >
         <Heart
@@ -56,7 +56,7 @@ export default function ProductCard({ product, onSelect }: ProductCardProps) {
       </button>
 
       <div>
-        <div className="w-full h-44 sm:h-48 flex items-center justify-center p-2 rounded-xl bg-[#f8f9fa] overflow-hidden mb-3">
+        <div className="w-full h-36 xs:h-40 sm:h-48 flex items-center justify-center p-2 rounded-xl bg-[#f8f9fa] overflow-hidden mb-2 sm:mb-3">
           <img
             src={product.thumbnail || (product.images && product.images[0])}
             alt={product.title}
@@ -66,35 +66,35 @@ export default function ProductCard({ product, onSelect }: ProductCardProps) {
 
         {tag && (
           <span
-            className={`inline-block text-[10px] font-extrabold tracking-wider px-2 py-0.5 rounded-sm uppercase mb-2 ${tag.color}`}
+            className={`inline-block text-[9px] sm:text-[10px] font-extrabold tracking-wider px-2 py-0.5 rounded-sm uppercase mb-1.5 sm:mb-2 ${tag.color}`}
           >
             {tag.label}
           </span>
         )}
 
-        <div className="flex items-center justify-between text-xs mb-1.5">
-          <span className="uppercase text-[11px] font-bold tracking-wider text-zinc-400 truncate max-w-[130px]">
+        <div className="flex items-center justify-between text-[10px] sm:text-xs mb-1 sm:mb-1.5 gap-2">
+          <span className="uppercase text-[10px] sm:text-[11px] font-bold tracking-wider text-zinc-400 truncate flex-1 min-w-0">
             {product.category}
           </span>
-          <div className="flex items-center gap-1 text-zinc-700 font-semibold text-xs shrink-0">
-            <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+          <div className="flex items-center gap-1 text-zinc-700 font-semibold text-[10px] sm:text-xs shrink-0">
+            <Star className="w-3 h-3 sm:w-3.5 sm:h-3.5 fill-amber-400 text-amber-400" />
             <span>{product.rating.toFixed(1)}</span>
             <span className="text-zinc-400 font-normal">({product.stock * 3 + 12})</span>
           </div>
         </div>
 
-        <h3 className="font-bold text-zinc-900 text-sm leading-snug line-clamp-2 min-h-[2.5rem]">
+        <h3 className="font-bold text-zinc-900 text-xs sm:text-sm leading-snug line-clamp-2 min-h-[2rem] sm:min-h-[2.5rem]">
           {product.title}
         </h3>
       </div>
 
-      <div className="mt-4 pt-2 flex items-center justify-between">
-        <div className="flex items-baseline gap-1.5">
-          <span className="text-lg font-black text-zinc-950">
+      <div className="mt-3 sm:mt-4 pt-2 flex items-center justify-between">
+        <div className="flex items-baseline gap-1 sm:gap-1.5">
+          <span className="text-base sm:text-lg font-black text-zinc-950">
             ${product.price.toFixed(2)}
           </span>
           {originalPrice && (
-            <span className="text-xs text-zinc-400 line-through">
+            <span className="text-[10px] sm:text-xs text-zinc-400 line-through">
               ${originalPrice}
             </span>
           )}
@@ -103,10 +103,10 @@ export default function ProductCard({ product, onSelect }: ProductCardProps) {
         <button
           type="button"
           onClick={handleAddToCartClick}
-          className="relative h-9 w-9 rounded-lg border-2 border-orange-500/80 hover:bg-orange-600 text-orange-600 hover:text-white flex items-center justify-center transition-all shadow-2xs hover:shadow-xs active:scale-95"
+          className="relative h-8 w-8 sm:h-9 sm:w-9 rounded-lg border-2 border-orange-500/80 hover:bg-orange-600 text-orange-600 hover:text-white flex items-center justify-center transition-all shadow-2xs hover:shadow-xs active:scale-95"
           aria-label="Add to cart"
         >
-          <Plus className="w-4 h-4 stroke-[2.5]" />
+          <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
         </button>
       </div>
     </div>

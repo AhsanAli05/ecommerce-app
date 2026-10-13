@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from 'react'
-import { CheckCircle2, X, RotateCcw, AlertTriangle } from 'lucide-react'
+import { CheckCircle2, RotateCcw, AlertTriangle } from 'lucide-react'
 import { useAppDispatch, useAppSelector } from '../store/hooks'
 import {
   fetchProducts,
@@ -13,6 +13,7 @@ import Navbar from '../components/Navbar'
 import ProductCard from '../components/ProductCard'
 import ProductSkeleton from '../components/ProductSkeleton'
 import CategoryFilter, { type CategoryTab } from '../components/CategoryFilter'
+import ActiveFilters from '../components/ActiveFilters'
 import Pagination from '../components/Pagination'
 import ProductModal from '../components/Modals/ProductModal'
 import CartDrawer from '../components/CartDrawer'
@@ -130,7 +131,7 @@ export default function Dashboard() {
         isWishlistActive={showWishlistOnly}
       />
 
-      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      <main className="flex-1 max-w-7xl 2xl:max-w-[1536px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8 min-w-0">
         <CategoryFilter
           tabs={CATEGORY_TABS}
           selectedCategory={selectedCategory}
@@ -150,16 +151,16 @@ export default function Dashboard() {
         <div className="space-y-3">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="flex items-center gap-3">
-              <h1 className="text-3xl font-extrabold tracking-tight text-zinc-950 font-serif">
+              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-zinc-950 font-serif">
                 {showWishlistOnly ? 'Saved Wishlist' : 'Curated Catalog'}
               </h1>
-              <span className="px-3 py-1 rounded-full bg-orange-100 text-orange-700 text-xs font-black tracking-wider uppercase">
+              <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-orange-100 text-orange-700 text-[11px] sm:text-xs font-black tracking-wider uppercase">
                 {showWishlistOnly ? 'Favorites' : 'In Stock'}
               </span>
             </div>
 
             <div className="flex items-center gap-1.5 text-xs text-zinc-500 font-medium">
-              <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
               <span>
                 Showing <strong className="text-zinc-900">{filteredProducts.length}</strong> of{' '}
                 <strong className="text-zinc-900">{rawProducts.length || 128}</strong> verified items
@@ -167,61 +168,25 @@ export default function Dashboard() {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 pt-1">
-            <span className="text-xs font-bold text-zinc-400 tracking-wider">ACTIVE:</span>
-            {showWishlistOnly && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-xs font-semibold text-orange-700 shadow-2xs">
-                Wishlist Only ({wishlistIds.length})
-                <button
-                  type="button"
-                  onClick={() => {
-                    setShowWishlistOnly(false)
-                    setCurrentPage(1)
-                  }}
-                  className="hover:text-black"
-                >
-                  <X className="w-3 h-3" />
-                </button>
-              </span>
-            )}
-            {departmentFilter && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-zinc-200 text-xs font-medium text-zinc-700 shadow-2xs">
-                {departmentFilter}
-                <button
-                  type="button"
-                  onClick={() => {
-                    setDepartmentFilter('')
-                    setCurrentPage(1)
-                  }}
-                  className="hover:text-black"
-                >
-                  <X className="w-3 h-3" />
-                </button>
-              </span>
-            )}
-            {minRating !== null && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-zinc-200 text-xs font-medium text-zinc-700 shadow-2xs">
-                Rating: {minRating}+
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMinRating(null)
-                    setCurrentPage(1)
-                  }}
-                  className="hover:text-black"
-                >
-                  <X className="w-3 h-3" />
-                </button>
-              </span>
-            )}
-            <button
-              type="button"
-              onClick={handleResetFilters}
-              className="text-xs font-bold text-orange-600 hover:text-orange-700 ml-2"
-            >
-              Reset All
-            </button>
-          </div>
+          <ActiveFilters
+            showWishlistOnly={showWishlistOnly}
+            wishlistCount={wishlistIds.length}
+            onClearWishlist={() => {
+              setShowWishlistOnly(false)
+              setCurrentPage(1)
+            }}
+            departmentFilter={departmentFilter}
+            onClearDepartment={() => {
+              setDepartmentFilter('')
+              setCurrentPage(1)
+            }}
+            minRating={minRating}
+            onClearRating={() => {
+              setMinRating(null)
+              setCurrentPage(1)
+            }}
+            onResetAll={handleResetFilters}
+          />
         </div>
 
         {(status === 'loading' || status === 'idle') && (
@@ -229,7 +194,7 @@ export default function Dashboard() {
         )}
 
         {status === 'failed' && (
-          <div className="p-8 rounded-3xl bg-rose-50/70 border border-rose-200 text-center max-w-lg mx-auto space-y-4 my-12">
+          <div className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl bg-rose-50/70 border border-rose-200 text-center max-w-lg mx-auto space-y-4 my-8 sm:my-12">
             <AlertTriangle className="w-10 h-10 text-rose-500 mx-auto" />
             <h3 className="text-lg font-bold text-rose-950">Failed to load catalog</h3>
             <p className="text-xs text-rose-700 leading-relaxed">{error}</p>
@@ -245,7 +210,7 @@ export default function Dashboard() {
         )}
 
         {status === 'succeeded' && filteredProducts.length === 0 && (
-          <div className="p-12 text-center bg-white rounded-3xl border border-zinc-100 shadow-xs max-w-md mx-auto my-12 space-y-4">
+          <div className="p-8 sm:p-12 text-center bg-white rounded-2xl sm:rounded-3xl border border-zinc-100 shadow-xs max-w-md mx-auto my-8 sm:my-12 space-y-4">
             <p className="text-base font-bold text-zinc-900">
               {showWishlistOnly ? 'Your wishlist is currently empty' : 'No products match your criteria'}
             </p>
@@ -268,8 +233,8 @@ export default function Dashboard() {
           <div
             className={
               viewMode === 'grid'
-                ? 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'
-                : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'
+                ? 'grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-4 gap-3 sm:gap-6'
+                : 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6'
             }
           >
             {paginatedProducts.map((product) => (

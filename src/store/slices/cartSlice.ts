@@ -46,9 +46,9 @@ const cartSlice = createSlice({
       state.items = []
     },
     toggleWishlist: (state, action: PayloadAction<number>) => {
-      const index = state.wishlist.indexOf(action.payload)
-      if (index >= 0) {
-        state.wishlist.splice(index, 1)
+      const exists = state.wishlist.includes(action.payload)
+      if (exists) {
+        state.wishlist = state.wishlist.filter((id) => id !== action.payload)
       } else {
         state.wishlist.push(action.payload)
       }

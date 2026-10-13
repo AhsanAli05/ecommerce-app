@@ -37,8 +37,8 @@ export default function Pagination({
   const progressPercent = Math.min(100, Math.round(((currentPage * pageSize) / totalItems) * 100))
 
   return (
-    <div className="pt-6 border-t border-zinc-200/60 flex flex-col sm:flex-row items-center justify-between gap-6">
-      <div className="w-full sm:w-72 space-y-2">
+    <div className="pt-4 sm:pt-6 border-t border-zinc-200/60 flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 w-full min-w-0">
+      <div className="w-full sm:w-72 space-y-1.5 sm:space-y-2">
         <div className="flex items-center justify-between text-xs font-medium text-zinc-500">
           <span>Catalog progress</span>
           <span className="font-bold text-zinc-800">
@@ -53,14 +53,14 @@ export default function Pagination({
         </div>
       </div>
 
-      <div className="flex items-center gap-1.5 self-center">
+      <div className="flex items-center flex-wrap justify-center gap-1 sm:gap-1.5 self-center">
         <button
           type="button"
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
           disabled={currentPage === 1}
-          className="flex items-center gap-1 px-3.5 py-2 rounded-xl bg-zinc-100 hover:bg-zinc-200 disabled:opacity-40 disabled:hover:bg-zinc-100 text-xs font-semibold text-zinc-700 transition-colors"
+          className="flex items-center gap-1 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl bg-zinc-100 hover:bg-zinc-200 disabled:opacity-40 disabled:hover:bg-zinc-100 text-[11px] sm:text-xs font-semibold text-zinc-700 transition-colors"
         >
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronLeft className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
           Previous
         </button>
 
@@ -81,7 +81,7 @@ export default function Pagination({
               key={pageNum}
               type="button"
               onClick={() => onPageChange(pageNum)}
-              className={`w-9 h-9 rounded-xl text-xs font-bold transition-all ${
+              className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl text-xs font-bold transition-all ${
                 isActive
                   ? 'bg-orange-600 text-white shadow-xs'
                   : 'text-zinc-600 hover:bg-zinc-100'
@@ -96,10 +96,10 @@ export default function Pagination({
           type="button"
           onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
           disabled={currentPage === totalPages}
-          className="flex items-center gap-1 px-3.5 py-2 rounded-xl border border-orange-500/80 hover:bg-orange-600 hover:text-white disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-orange-600 text-orange-600 text-xs font-bold transition-colors"
+          className="flex items-center gap-1 px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-xl border border-orange-500/80 hover:bg-orange-600 hover:text-white disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:text-orange-600 text-orange-600 text-[11px] sm:text-xs font-bold transition-colors"
         >
           Next
-          <ChevronRight className="w-4 h-4" />
+          <ChevronRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
         </button>
       </div>
     </div>

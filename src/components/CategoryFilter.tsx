@@ -25,8 +25,8 @@ export default function CategoryFilter({
   onViewModeChange,
 }: CategoryFilterProps) {
   return (
-    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 border-b border-zinc-200/60 pb-6">
-      <div className="flex items-center gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-none">
+    <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 sm:gap-4 border-b border-zinc-200/60 pb-4 sm:pb-6 w-full min-w-0">
+      <div className="flex items-center sm:flex-wrap gap-1.5 sm:gap-2 overflow-x-auto sm:overflow-visible pb-1 sm:pb-0 scrollbar-none w-full min-w-0 max-w-full">
         {tabs.map((tab) => {
           const isActive = selectedCategory === tab.id
           return (
@@ -34,7 +34,7 @@ export default function CategoryFilter({
               key={tab.id}
               type="button"
               onClick={() => onSelectCategory(tab.id)}
-              className={`px-5 py-2 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${
+              className={`px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-bold whitespace-nowrap transition-all ${
                 isActive
                   ? 'bg-orange-600 text-white shadow-xs'
                   : 'bg-[#eceef5] hover:bg-zinc-200 text-zinc-700'
@@ -46,7 +46,7 @@ export default function CategoryFilter({
         })}
       </div>
 
-      <div className="flex items-center gap-3 self-end lg:self-auto shrink-0">
+      <div className="flex items-center gap-2 sm:gap-3 self-end lg:self-auto shrink-0">
         <div className="relative">
           <select
             value={sortBy}

@@ -27,12 +27,12 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
         onClick={onClose}
       />
 
-      <div className="fixed inset-y-0 right-0 max-w-full flex pl-10">
-        <div className="w-screen max-w-md bg-white shadow-2xl flex flex-col">
-          <div className="p-6 border-b border-zinc-100 flex items-center justify-between">
+      <div className="fixed inset-y-0 right-0 max-w-full flex pl-0 sm:pl-10">
+        <div className="w-screen max-w-full sm:max-w-md bg-white shadow-2xl flex flex-col">
+          <div className="p-4 sm:p-6 border-b border-zinc-100 flex items-center justify-between">
             <div className="flex items-center gap-2">
               <ShoppingBag className="w-5 h-5 text-orange-600" />
-              <h2 className="text-lg font-extrabold text-zinc-900">Your Cart</h2>
+              <h2 className="text-base sm:text-lg font-extrabold text-zinc-900">Your Cart</h2>
               <span className="text-xs px-2 py-0.5 rounded-full bg-orange-100 text-orange-800 font-bold">
                 {items.length}
               </span>
@@ -40,14 +40,14 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             <button
               type="button"
               onClick={onClose}
-              className="p-2 rounded-full hover:bg-zinc-100 text-zinc-500 transition-colors"
+              className="p-1.5 sm:p-2 rounded-full hover:bg-zinc-100 text-zinc-500 transition-colors"
               aria-label="Close"
             >
               <X className="w-5 h-5" />
             </button>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-6 space-y-4">
+          <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-3 sm:space-y-4">
             {items.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-center py-12">
                 <div className="h-16 w-16 rounded-full bg-orange-50 flex items-center justify-center text-orange-500 mb-4">
@@ -126,14 +126,14 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
           </div>
 
           {items.length > 0 && (
-            <div className="p-6 border-t border-zinc-100 bg-white space-y-4">
+            <div className="p-4 sm:p-6 border-t border-zinc-100 bg-white space-y-3 sm:space-y-4">
               <div className="flex items-center justify-between text-sm">
                 <span className="text-zinc-500 font-medium">Subtotal</span>
-                <span className="text-xl font-black text-zinc-900">${total.toFixed(2)}</span>
+                <span className="text-lg sm:text-xl font-black text-zinc-900">${total.toFixed(2)}</span>
               </div>
               <button
                 type="button"
-                className="w-full py-3.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-sm transition-all"
+                className="w-full py-3 sm:py-3.5 rounded-xl bg-orange-600 hover:bg-orange-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-all active:scale-95"
               >
                 Proceed to Checkout
                 <ArrowRight className="w-4 h-4" />
