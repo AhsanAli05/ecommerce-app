@@ -51,7 +51,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
 
           <div className="p-4 sm:p-6 md:p-8 flex flex-col justify-between">
             <div>
-              <div className="flex items-center justify-between mb-2">
+              <div className="flex items-center justify-between gap-3 mb-2 pr-10 sm:pr-12">
                 <span className="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-orange-600">
                   {product.category}
                 </span>
@@ -108,9 +108,8 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
                 <button
                   type="button"
                   onClick={handleToggleWishlist}
-                  className={`p-2.5 sm:p-3 rounded-xl border border-zinc-200 transition-colors ${
-                    isWishlisted ? 'bg-orange-50 text-orange-600 border-orange-200' : 'text-zinc-600 hover:bg-zinc-50'
-                  }`}
+                  className={`p-2.5 sm:p-3 rounded-xl border border-zinc-200 transition-colors ${isWishlisted ? 'bg-orange-50 text-orange-600 border-orange-200' : 'text-zinc-600 hover:bg-zinc-50'
+                    }`}
                   aria-label="Wishlist"
                 >
                   <Heart className={`w-4 h-4 sm:w-5 sm:h-5 ${isWishlisted ? 'fill-orange-600' : ''}`} />
